@@ -1,20 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const { hash, compare } = require('bcrypt');
 const db = require('../db/connection');
-const User = require('./User')
+const User = require('./User');
 
-class Mood extends Model { }
+class Entry extends Model { }
 
-User.init({
-    user_name: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-        validate: {
-          min: 5
-        }
-      },
-
+Entry.init({
   mood: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -22,10 +13,19 @@ User.init({
       isNumeric: true
     }
   },
-
+  dailyFeeling: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      min: 5
+    }
+  }
 }, {
   sequelize: db,
-  modelName: 'user',
+  modelName: 'entry'
 });
 
-module.exports = Mood;
+User.hasMany(Entry);
+Entry.belongsTo(User);
+
+module.exports = Entry;
