@@ -13,7 +13,6 @@ User.init({
       min: 2
     }
   },
-
   last_name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -21,7 +20,6 @@ User.init({
       min: 2
     }
   },
-
   email: {
     type: DataTypes.STRING,
     unique: true,
@@ -30,8 +28,6 @@ User.init({
       isEmail: true
     }
   },
-
-
   user_name: {
     type: DataTypes.STRING,
     unique: true,
@@ -40,8 +36,6 @@ User.init({
       min: 5
     }
   },
-
-
   password: {
     type: DataTypes.STRING,
     validate: {
