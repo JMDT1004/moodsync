@@ -12,7 +12,7 @@ function isAuthenticated(req, res, next) {
 
 // Login page
 router.get('/login', (req, res) => {
-  if (req.session.user_id) return res.redirect('/thought');
+  if (req.session.user_id) return res.redirect('/mood');
   
   res.render('login', {
     isLogin: true
@@ -21,7 +21,7 @@ router.get('/login', (req, res) => {
 
 // Homepage
 router.get('/', (req, res) => {
-  if (req.session.user_id) return res.redirect('/thought');
+  if (req.session.user_id) return res.redirect('/mood');
   
   res.render('index', {
     isHome: true,
@@ -36,11 +36,11 @@ router.get('/register', (req, res) => {
   });
 });
 
-// Thought Page
-router.get('/thought', isAuthenticated, async (req, res) => {
+// mood Page
+router.get('/mood', isAuthenticated, async (req, res) => {
   const user = await User.findByPk(req.session.user_id);
   
-  res.render('thought', {
+  res.render('mood', {
     email: user.email
   });
   
