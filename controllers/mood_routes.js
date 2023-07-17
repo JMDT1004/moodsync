@@ -3,16 +3,17 @@ const router = require('express').Router();
 const User = require('../models/User');
 const encodedParams = new URLSearchParams();
 const Mood = require('../models/Mood');
+const { response } = require("express");
 
-async function getMoodData(){
-encodedParams.set('text', Mood.text);
+async function getMoodData(dataText){
+encodedParams.set('text', dataText);
 
 const options = {
   method: 'POST',
   url: 'https://twinword-emotion-analysis-v1.p.rapidapi.com/analyze/',
   headers: {
     'content-type': 'application/x-www-form-urlencoded',
-    'X-RapidAPI-Key': '',
+    'X-RapidAPI-Key': '5259873db9mshf7c3fba8a23606bp181c63jsn92c89f2ee959',
     'X-RapidAPI-Host': 'twinword-emotion-analysis-v1.p.rapidapi.com'
   },
   data: encodedParams,
@@ -20,16 +21,29 @@ const options = {
 
 try {
 	const response = await axios.request(options);
-	console.log(response.data);
+    return response.data;
 } catch (error) {
 	console.error(error);
 }
+
 }
 
-router.post ('/mood',(req, res) => {
-    getMoodData();
+router.post ('/mood', async(req, res) => {
     try {
-     // const newMood = await Mood.create(req.body);
+    const moodData = await getMoodData(req.body.text);
+    console.log(moodData.emotions_normalized);
+    let surpriseData = moodData.emotions_normalized.surprise;
+    console.log(surpriseData);
+    let joyData = moodData.emotions_normalized.joy;
+    let sadnessData = moodData.emotions_normalized.sadness;
+    let disgustData = moodData.emotions_normalized.disgust;
+    let fearData = moodData.emotions_normalized.fear;
+    let angerData = moodData.emotions_normalized.anger;
+
+    Mood.create({title: 'example title', text: req.body.text, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
+    // redirect them after the data is obtained
+    res.redirect("/mood");
+  
     }
     catch (err) {
         console.log(err);
