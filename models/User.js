@@ -34,6 +34,17 @@ User.init({
 }, {
   sequelize: db,
   modelName: 'user',
+  hooks: {
+    async beforeCreate(user) {
+      const hashPassword = await hash(user.password, 10);
+      user.password = hashPassword;
+    }
+  }
 });
+
+User.prototype.validatePass = async function (formPassword) {
+  const isValid = await compare(formPassword, this.password);
+  return isValid;
+};
 
 module.exports = User;
