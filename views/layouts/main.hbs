@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodSync</title>
-   <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodSync</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
-    <header>MoodSync Application</header>
-    
-     <nav>
-      <a href="/" class="{{#if isHome}}active{{/if}}">Home</a>
+  <header class="header">MoodSync
+
+    <nav>
+      <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
       {{#if email}}
-        <p>Welcome, {{email}}</p>
-        <a href="/logout">Log Out</a>
-        {{else}}
-        {{#if isLoggedIn}}
-          <a href="/mood">Mood</a>
-          {{else}}
-          <a href="/login" class="{{#if isLogin}}active{{/if}}">Login</a>
-          <a href="/register" class="{{#if isRegister}}active{{/if}}">Register</a>
-        {{/if}}
+      <p>Welcome, {{email}}</p>
+      <a href="/logout">Log Out</a>
+      {{else}}
+      {{#if isLoggedIn}}
+      <a href="/mood">Mood</a>
+      {{else}}
+      <a href="/login" class="{{#if isLogin}}hidden{{/if}}">Login</a>
+      <a href="/register" class="{{#if isRegister}}hidden{{/if}}">Register</a>
+      {{/if}}
       {{/if}}
     </nav>
-    {{{body}}}
-    
+  </header>
+  {{{body}}}
+
 </body>
+
 </html>
