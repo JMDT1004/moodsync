@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
   });
 
   router.post('/register', async (req, res) => {
-    console.log("Got into post route.")
+
     try {
       const newUser = await User.create(req.body);
       
