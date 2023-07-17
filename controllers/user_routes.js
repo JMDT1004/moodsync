@@ -40,11 +40,11 @@ router.post('/login', async (req, res) => {
       req.session.user_id = newUser.id;
   
     res.redirect('/mood');
-    } catch (err) {
-        const dupeEmail = (err.errors.find(e => e.path === 'email'));
+    } //catch (err) {
+    //     const dupeEmail = (err.errors.find(e => e.path === 'email'));
   
-        if (dupeEmail) res.redirect('/login');
-    }
+    //     if (dupeEmail) res.redirect('/login');
+    // }
   
   });
 
