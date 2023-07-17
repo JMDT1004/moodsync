@@ -5,7 +5,7 @@ const User = require('./User')
 
 class Mood extends Model { }
 
-User.init({
+Mood.init({
     user_name: {
         type: DataTypes.STRING,
         unique: true,
