@@ -1,39 +1,40 @@
+const axios = require("axios");
 const router = require('express').Router();
 const User = require('../models/User');
-const Mood = require('../models/Mood')
+const encodedParams = new URLSearchParams();
+const Mood = require('../models/Mood');
 
+async function getMoodData(){
+encodedParams.set('text', Mood.text);
 
-router.post('/mood', async (req, res) => {
-    console.log("Got into post route.")
+const options = {
+  method: 'POST',
+  url: 'https://twinword-emotion-analysis-v1.p.rapidapi.com/analyze/',
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded',
+    'X-RapidAPI-Key': '',
+    'X-RapidAPI-Host': 'twinword-emotion-analysis-v1.p.rapidapi.com'
+  },
+  data: encodedParams,
+};
+
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
+}
+
+router.post ('/mood',(req, res) => {
+    getMoodData();
     try {
-      const newUser = await User.create(req.body);
-      
-      //creates a session and sends a cookie to the client 
-      req.session.user_id = newUser.id;
-  
-    res.redirect('/mood');
-    } catch (err) {
-        const dupeEmail = (err.errors.find(e => e.path === 'email'));
-  
-        if (dupeEmail) res.redirect('/login');
+     // const newMood = await Mood.create(req.body);
+    }
+    catch (err) {
+        console.log(err);
     }
   
   });
-const settings = {
-	async: true,
-	crossDomain: true,
-	url: 'https://twinword-emotion-analysis-v1.p.rapidapi.com/analyze/',
-	method: 'POST',
-	headers: {
-		'content-type': 'application/x-www-form-urlencoded',
-		'X-RapidAPI-Key': '5259873db9mshf7c3fba8a23606bp181c63jsn92c89f2ee959',
-		'X-RapidAPI-Host': 'twinword-emotion-analysis-v1.p.rapidapi.com'
-	},
-	data: {
-		text: Mood.entry
-	}
-};
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
+module.exports = router;
