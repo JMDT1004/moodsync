@@ -38,7 +38,7 @@ router.get('/register', (req, res) => {
 
 // mood Page
 router.get('/mood', isAuthenticated, async (req, res) => {
-  console.log("Mood got reached");
+  
   const user = await User.findByPk(req.session.user_id);
   
   res.render('mood', {
