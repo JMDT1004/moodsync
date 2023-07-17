@@ -1,53 +1,90 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(45deg, aquamarine, #FFF689);
-    background-size: 400% 400%;
-    animation: flow 10s linear infinite;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-    color: white;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(45deg, aquamarine, #FFF689);
+  background-size: 400% 400%;
+  animation: flow 10s linear infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: Arial, sans-serif;
+  color: black;
+  background-color: aquamarine; /* Added: Set a fallback background color */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+
+h1 {
+  font-size: 55px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  align-self: center; /* Center the ul horizontally */
+  text-align: center; /* Center the li elements within the ul */
+  display: flex; /* Add display flex to enable centering */
+  flex-direction: column; /* Stack li elements vertically */
+}
+
+li {
+  opacity: 0;
+  animation: fadeInOut 15s ease-in-out infinite;
+  font-size: xx-large;
+}
+
+li:nth-child(1) {
+  animation-delay: 0s; /* Remove the fadeOut delay for the first li */
+}
+
+li:nth-child(2) {
+  animation-delay: 5s;
+}
+
+li:nth-child(3) {
+  animation-delay: 10s;
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
   }
-  h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+
+  100% {
+    background-position: 100% 50%;
   }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
+}
+
+@keyframes fadeInOut {
+  0% {
     opacity: 0;
-    animation: fadeInOut 11s ease-in-out infinite;
   }
-  li:nth-child(1) {
-    animation-delay: 0s;
+
+  5% {
+    opacity: 1; /* Fade in from 0% to 100% opacity over the first 5% of the animation duration */
   }
-  li:nth-child(2) {
-    animation-delay: 5s;
+
+  25% {
+    opacity: 1; /* Stay at 100% opacity for the next 20% of the animation duration */
   }
-  li:nth-child(3) {
-    animation-delay: 10s;
+
+  30% {
+    opacity: 0; /* Fade out from 100% to 0% opacity over the next 5% of the animation duration */
   }
-  @keyframes flow {
-    0% {
-      background-position: 0% 50%;
-    }
-    100% {
-      background-position: 100% 50%;
-    }
+
+  100% {
+    opacity: 0;
   }
-  @keyframes fadeInOut {
-    0%, 100% {
-      opacity: 0;
-    }
-    25%, 75% {
-      opacity: 1;
-    }
-  }
+}
