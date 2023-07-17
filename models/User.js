@@ -5,23 +5,6 @@ const db = require('../db/connection');
 class User extends Model { }
 
 User.init({
-  first_name: {
-    type: DataTypes.STRING,
-    unique: false,
-    allowNull: false,
-    validate: {
-      min: 2
-    }
-  },
-
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      min: 2
-    }
-  },
-
   email: {
     type: DataTypes.STRING,
     unique: true,
@@ -32,7 +15,7 @@ User.init({
   },
 
 
-  user_name: {
+  username: {
     type: DataTypes.STRING,
     unique: true,
     allowNull: false,
