@@ -49,7 +49,7 @@ router.post ('/entry', async(req, res) => {
     console.log(newEntry);
     Mood.create({title: newTitle, entry: newEntry, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
     // redirect them after the data is obtained
-    res.redirect("/mood");
+    res.redirect('/mood');
   
     }
     catch (err) {
