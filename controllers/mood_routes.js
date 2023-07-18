@@ -2,6 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const router = require('express').Router();
 const encodedParams = new URLSearchParams();
+const User = require('../models/User');
 const Mood = require('../models/Mood');
 
 async function getMoodData(dataText){
@@ -35,6 +36,7 @@ function percentage(num)
 
 router.post ('/entry', async(req, res) => {
     try {
+      const user = await User.findByPk(req.session.user_id);
     const newEntry = req.body.text;
     const newTitle = req.body.title;
     console.log("This is a new text entry: ", newEntry);
@@ -47,7 +49,7 @@ router.post ('/entry', async(req, res) => {
     let fearData = percentage(moodData.emotions_normalized.fear);
     let angerData = percentage(moodData.emotions_normalized.anger);
     console.log(newEntry);
-    Mood.create({title: newTitle, entry: newEntry, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
+    Mood.create({ userId: user.id, title: newTitle, entry: newEntry, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
     // redirect them after the data is obtained
     res.redirect('/mood');
   

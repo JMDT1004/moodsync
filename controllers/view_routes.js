@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const User = require('../models/User')
-
+const User = require('../models/User');
+const Mood = require('../models/Mood');
 // Middleware
 function isAuthenticated(req, res, next) {
   const isAuthenticated = req.session.user_id;
@@ -38,14 +38,24 @@ router.get('/register', (req, res) => {
 
 // mood Page
 router.get('/mood', isAuthenticated, async (req, res) => {
-  
-  const user = await User.findByPk(req.session.user_id);
-  
-  res.render('mood', {
-    email: user.email
-  });
-  
+  try {
+    const user = await User.findByPk(req.session.user_id, {
+      include: Mood
+    });
+
+    const moods = user.moods.map(mood => mood.get({ plain: true }));
+    console.log("These are the moods: ", moods)
+    res.render("mood", {
+      email: user.email,
+      entry: moods // Pass the moods data
+    });
+  } catch (error) {
+    // Handle any errors
+    console.error(error);
+    res.status(500).send("An error occurred");
+  }
 });
+
 
 router.get('/entry', isAuthenticated, async (req, res) => {
   
