@@ -5,18 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoodSync</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
   <header class="header">MoodSync
-
     <nav>
       <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
       {{#if email}}
-      <p>Welcome, {{email}}</p>
       <a href="/logout">Log Out</a>
       {{else}}
       {{#if isLoggedIn}}
@@ -26,6 +24,9 @@
       <a href="/register" class="{{#if isRegister}}hidden{{/if}}">Register</a>
       {{/if}}
       {{/if}}
+      <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}}">Welcome,
+        {{email}}</p>
+
     </nav>
   </header>
   {{{body}}}
