@@ -21,7 +21,7 @@ router.get('/login', (req, res) => {
 
 // Homepage
 router.get('/', (req, res) => {
-  if (req.session.user_id) return res.redirect('/mood');
+  if (req.session.user_id) return res.redirect('/entry');
   
   res.render('index', {
     isHome: true,
@@ -42,6 +42,16 @@ router.get('/mood', isAuthenticated, async (req, res) => {
   const user = await User.findByPk(req.session.user_id);
   
   res.render('mood', {
+    email: user.email
+  });
+  
+});
+
+router.get('/entry', isAuthenticated, async (req, res) => {
+  
+  const user = await User.findByPk(req.session.user_id);
+  
+  res.render('entry', {
     email: user.email
   });
   
