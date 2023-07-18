@@ -17,6 +17,28 @@ body {
   width: 100%;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-input {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.pbtn, .tbtn {
+  background-color: transparent;
+  color: solid black;
+  font-weight: bolder;
+  border-radius: 12px;
+  padding: 10px;
+  border: none;
+  cursor: pointer; 
+} 
+
+
 .login, .register{
   display: flex;
   flex-direction: column;
@@ -28,20 +50,70 @@ body {
   margin: auto;
   margin-bottom: 10px;
 }
-/* .register{
+
+.text-input {
+  border: 1px solid lightgray;
+  padding:10px 15px;
+  width: 60vh;
+  height: 10vh;
+ 
+}
+
+.title-input {
+  border: 1px solid lightgray;
+  padding:10px 15px;
+  width: 60vh;
+  font-weight: bolder;
+  text-transform: uppercase;
+
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.vertical-table {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  width: 1px;
+}
+
+
+
+.entry-title {
+  width: 120px;
+}
+
+.empty-th {
+  width: calc(100% / 3);
+}
+
+.vertical-table {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
+.form-entry{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  font-size: 20px;
-  margin-bottom: 20px;
-  width: 150px;
-  margin: auto;
-} */
+  align-content: center;
+}
 
-
-.user .pass{
-  padding: 10px;
+.user, .pass, .input {
+  border: .5px solid gray;
+  display: flex;
+  align-items: first baseline;
+  padding: 2px;
+  margin-bottom: 5px;
+  border-radius: 5px;
 
 }
 
