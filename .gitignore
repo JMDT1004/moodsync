@@ -1,5 +1,7 @@
 node_modules
 package-lock.json
 .env
-d3.js
-d3.hbs
+modelD3.js
+graphTemplate.hbs
+displayGraph.js
+controllerD3.js
