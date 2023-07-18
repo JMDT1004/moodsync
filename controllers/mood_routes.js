@@ -36,6 +36,7 @@ function percentage(num)
 router.post ('/entry', async(req, res) => {
     try {
     const newEntry = req.body.text;
+    const newTitle = req.body.title;
     console.log("This is a new text entry: ", newEntry);
     const moodData = await getMoodData(newEntry);
     //console.log(moodData.emotions_normalized);
@@ -46,9 +47,9 @@ router.post ('/entry', async(req, res) => {
     let fearData = percentage(moodData.emotions_normalized.fear);
     let angerData = percentage(moodData.emotions_normalized.anger);
     console.log(newEntry);
-    Mood.create({title: 'example title', entry: newEntry, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
+    Mood.create({title: newTitle, entry: newEntry, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
     // redirect them after the data is obtained
-    res.redirect("/mood");
+    res.redirect('/mood');
   
     }
     catch (err) {

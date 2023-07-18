@@ -1,3 +1,7 @@
+
+<button class="new-entry" onclick="redirectToEntry()">Create Entry</button>
+
+
 <table class="entry-table">
     <tr>
         <th class="vertical-table">Day Dataset Table</th>
@@ -8,5 +12,10 @@
             <div class="mood-data"></div>
         </th>
 </table>
-<button class="new-entry">Create Entry</button>
 
+
+<script>
+  function redirectToEntry() {
+    window.location.href = "/entry";
+  }
+</script>
