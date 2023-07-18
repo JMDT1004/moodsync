@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const db = require('../db/connection');
+const User = require('./User');
 
 class Mood extends Model { }
 
@@ -45,5 +46,8 @@ Mood.init({
   sequelize: db,
   modelName: 'mood',
 });
+
+// Define the association for Mood to User
+// Mood.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Mood;
