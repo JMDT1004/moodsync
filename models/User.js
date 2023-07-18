@@ -48,9 +48,9 @@ User.prototype.validatePass = async function (formPassword) {
   return isValid;
 };
 
+// Define the association for User to Mood
+User.hasMany(Mood, { foreignKey: 'userId' });
 // Define the association for Mood to User
 Mood.belongsTo(User, { foreignKey: 'userId' });
-// Define the association for User to Mood 
-User.hasMany(Mood, { foreignKey: 'userId' });
 
 module.exports = User;
