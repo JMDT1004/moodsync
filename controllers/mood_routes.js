@@ -33,7 +33,7 @@ function percentage(num)
 }
 
 
-router.post ('/mood', async(req, res) => {
+router.post ('/entry', async(req, res) => {
     try {
     const newEntry = req.body.text;
     console.log("This is a new text entry: ", newEntry);
@@ -56,5 +56,6 @@ router.post ('/mood', async(req, res) => {
     }
   
   });
+  
 
 module.exports = router;
