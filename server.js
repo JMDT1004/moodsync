@@ -12,6 +12,8 @@ const db = require("./db/connection");
 const user_routes = require("./controllers/user_routes");
 const view_routes = require("./controllers/view_routes");
 const mood_routes = require("./controllers/mood_routes");
+// const d3 = require("./controllers/d3");
+
 
 const app = express();
 const PORT = process.env.PORT || 3333;
