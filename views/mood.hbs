@@ -15,10 +15,10 @@
 </section>
 
 {{!-- section that outputs the data from the tables --}}
-
+<section class = "p-8">
   {{#each entry}}
   <!-- Clickable link with entry ID as a parameter -->
-<div class="flex flex-col justify-center rounded-lg p-2 mx-2 my-8 shadow-lg hover:shadow-2xl sm:w-4/5 sm:mx-auto w-full transform bg-gradient-to-b from-gray-500 to-gray-900  hover:-translate-y-1 hover:scale-105">
+<div class="flex flex-col justify-center rounded-lg p-2 mx-2 my-8 shadow-lg hover:shadow-2xl mx-auto w-full max-w-4xl transform bg-gradient-to-b from-gray-500 to-gray-900  hover:-translate-y-1 hover:scale-105">
   <a href="/mood/{{this.id}}" class="block">
     <section class="transform hover:shadow-xl {{this.color}} rounded-lg p-4">
       <p class="font-mono italic font-bold text-black text-center text-xl md:text-2xl lg:text-3xl">{{this.title}}</p>
@@ -28,7 +28,7 @@
 </div>
   {{/each}}
 
-
+</section>
 <script>
   function redirectToEntry() {
     window.location.href = "/entry";
