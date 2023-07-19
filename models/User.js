@@ -3,7 +3,6 @@ const { hash, compare } = require('bcrypt');
 const db = require('../db/connection');
 const Mood = require('./Mood');
 
-
 class User extends Model { }
 
 User.init({
