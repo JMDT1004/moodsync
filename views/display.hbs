@@ -1,28 +1,45 @@
 <main class="">
-    <div class="rounded-lg p-4 m-10 shadow-lg shadow-l justify-start">
-        <form class="flex flex-col m-4 p-4" action="/mood/{{this.id}}" method="POST">
-            <label for="title">Title:
-                <input class="title-input" type="text" id="title" name="title" value="{{this.title}}">
-            </label>
-            <label for="entry">Entry:</label>
-            <textarea id="entry" name="entry">{{this.entry}}</textarea>
+  <div class="rounded-lg p-4 m-10 shadow-lg justify-start">
+    <form class="flex flex-col m-4 p-4" action="/mood/{{this.id}}" method="POST">
+      <label for="title" class="text-lg font-semibold mb-2">Title:</label>
+      <input class="border border-gray-300 rounded-md py-2 px-3 mb-4" type="text" id="title" name="title"
+        value="{{this.title}}">
+      <label for="entry" class="text-lg font-semibold mb-2">Entry:</label>
+      <textarea id="entry" name="entry"
+        class="border border-gray-300 rounded-md py-2 px-3 h-40 resize-none">{{this.entry}}</textarea>
+      <button type="submit"
+        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-md my-2 mx-8 transition-colors duration-300">Save</button>
+      <button
+        class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md shadow-md my-2 mx-8 transition-colors duration-300"
+        id="deleteButton" onclick="deleteEntry('{{this.id}}')">Delete Entry</button>
+    </form>
+  </div>
 
-            <button class="bg-green-400 my-2 py-4 mx-8 hover:shadow-xl" type="submit">Save</button>
-            <button class="bg-red-600 my-2 py-4 mx-8 hover:shadow-xl" id="deleteButton" onclick="deleteEntry('{{this.id}}')">Delete Entry</button>
-        </form>
+  <section class="flex flex-col text-lg sm:text-3xl text-center">
+    <p
+      class=" p-8 border-2 text-2xl sm:text-4xl font-bold tracking-wider text-center mb-6 bg-gradient-to-b from-gray-400 to-slate-800">
+      <span class="text-white">Entry info:</span>
+    </p>
+    <p
+      class="{{this.angerColor}} p-6 border-2 border-gray-300 rounded-lg hover:bg-red-800 hover:shadow-md transition duration-300">
+      Anger: {{this.anger}}</p>
+    <p
+      class="{{this.fearColor}} p-6 border-2 border-gray-300 rounded-lg hover:bg-orange-700 hover:shadow-md transition duration-300">
+      Fear: {{this.fear}}</p>
+    <p
+      class="{{this.sadnessColor}} p-6 border-2 border-gray-300 rounded-lg hover:bg-blue-800 hover:shadow-md transition duration-300">
+      Sadness: {{this.sadness}}</p>
+    <p
+      class="{{this.disgustColor}} p-6 border-2 border-gray-300 rounded-lg hover:bg-purple-800 hover:shadow-md transition duration-300">
+      Disgust: {{this.disgust}}</p>
+    <p
+      class="{{this.surpriseColor}} p-6 border-2 border-gray-300 rounded-lg hover:bg-green-800 hover:shadow-md transition duration-300">
+      Surprise: {{this.surprise}}</p>
+    <p
+      class="{{this.joyColor}} p-6 border-2 border-gray-300 rounded-lg hover:bg-yellow-700 hover:shadow-md transition duration-300">
+      Joy: {{this.joy}}</p>
+  </section>
 
-
-    </div>
-
-    <section class="flex flex-col md:text-size-lg lg: text-size 2xl text-center">
-        <p>Entry info:</p>
-        <p class="{{this.angerColor}} p-6">Anger: {{this.anger}}</p>
-        <p class="{{this.fearColor}} p-6 ">Fear: {{this.fear}}</p>
-        <p class="{{this.sadnessColor}} p-6">Sadness: {{this.sadness}}</p>
-        <p class="{{this.disgustColor}} p-6">Disgust: {{this.disgust}}</p>
-        <p class="{{this.surpriseColor}} p-6">Surprise: {{this.surprise}}</p>
-        <p class="{{this.joyColor}} p-6">Joy: {{this.joy}}</p>
-    </section>
 </main>
 
 

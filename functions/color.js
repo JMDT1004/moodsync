@@ -36,11 +36,11 @@ function attachColor(moodDisplay) {
         } else if (rating > 20 && rating <= 40) {
           return "bg-orange-300";
         } else if (rating > 40 && rating <= 60) {
-          return "bg-orange-500";
+          return "bg-orange-400";
         } else if (rating > 60 && rating <= 80) {
-          return "bg-orange-700";
+          return "bg-orange-500";
         } else if (rating > 80 && rating <= 100) {
-          return "bg-orange-900";
+          return "bg-orange-700";
         } else {
           return "bg-neutral-950";
         }
