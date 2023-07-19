@@ -21,7 +21,7 @@ function findMaxProperty(objectData, objectProperties) {
       maxProperty = prop;
     }
   }
-
+  console.log("Returning property: ", maxProperty, "Returning rating of: ", maxNumber)
   return { property: maxProperty, rating: maxNumber };
 }
 
@@ -63,7 +63,7 @@ router.get('/mood', isAuthenticated, async (req, res) => {
       const color = attachColor(moodDisplay);
       return { ...plainMood, color };
     });
-
+console.log("this is the mood: ", moods);
     res.render("mood", {
       email: user.email,
       entry: moods // Pass the moods data
@@ -151,7 +151,7 @@ router.get('/entry', isAuthenticated, async (req, res) => {
 function returnResult(data) {
   const searchCriteria = ['joy', 'sadness', 'fear', 'anger', 'surprise', 'disgust'];
   const maxResult = findMaxProperty(data, searchCriteria);
-
+  console.log(maxResult);
   return maxResult;
 }
 
