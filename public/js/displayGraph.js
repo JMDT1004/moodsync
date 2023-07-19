@@ -1,9 +1,11 @@
 // Set up the chart dimensions and margins
-let width = Math.min(window.innerWidth, 700);
+let width = Math.min((window.innerWidth), 750);
+width = width - 50;
 let height = width * 0.67; // Adjust the aspect ratio as needed
-const margin = { top: 20, right: 20, bottom: 60, left: 60 };
+const margin = { top: 20, right: 60, bottom: 60, left: 60 };
 let averagePercentages = [];
 let allMoodCategories = [];
+const colors = ["yellow", "green", "blue", "purple", "red", "orange"];
 
 // Function to calculate the average percentage for each mood category
 function calculateAveragePercentages(data, allMoodCategories) {
@@ -74,7 +76,7 @@ function createBarChart(data, allMoodCategories) {
     .attr("y", d => y(d.percentage))
     .attr("width", x.bandwidth())
     .attr("height", d => height - margin.bottom - y(d.percentage))
-    .attr("fill", "steelblue");
+    .attr("fill", (d, i) => colors[i % colors.length]); // Assign colors based on the index
 
   // Create the x-axis
   svg.append("g")
@@ -90,6 +92,7 @@ function createBarChart(data, allMoodCategories) {
 // Function to update the chart dimensions based on the viewport size
 const updateChartDimensions = () => {
   width = Math.min(window.innerWidth, 700);
+  width = width - 50;
   height = width * 0.67; // Adjust the aspect ratio as needed
 
   // Call the function to redraw the chart with updated dimensions
@@ -113,7 +116,7 @@ async function processMoodsData() {
     createBarChart(averagePercentages, allMoodCategories);
 
     // Start the timer to check for window size changes periodically
-    setInterval(updateChartDimensions, 2000); // Adjust the interval as needed
+    setInterval(updateChartDimensions, 500); // Adjust the interval as needed
 
   } catch (error) {
     console.error(error);
