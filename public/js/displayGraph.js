@@ -83,7 +83,12 @@ function createBarChart(data, allMoodCategories) {
     .attr("x", d => x(d.entry)) // Use mood categories for x positioning
     .attr("y", d => y(d.percentage))
     .attr("width", x.bandwidth())
-    .attr("height", d => height - margin.bottom - y(d.percentage))
+    .attr("height", d => {
+    console.log("This is D: ", d);
+    const return_val = height - margin.bottom - y(d.percentage);
+    console.log(return_val);
+    return return_val;
+  })
     .attr("fill", (d, i) => colors[i % colors.length]); // Assign colors based on the index
 
   // Create the x-axis
@@ -97,5 +102,5 @@ function createBarChart(data, allMoodCategories) {
     .call(d3.axisLeft(y).ticks(10).tickFormat(d => `${d}%`)); // Set tick formatting to display percentage with '%'
 }
     // Start the timer to check for window size changes periodically
-    setInterval(updateChartDimensions, 500); // Adjust the interval as needed
+    setInterval(updateChartDimensions, 5000); // Adjust the interval as needed
 
