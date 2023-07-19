@@ -16,12 +16,14 @@
        <header class="bg-gradient-to-r from-purple-400 via-green-400 to-red-400 p-4">
     <div class="flex justify-between items-center"> <!-- Flexbox container for centering on small screens and left-aligning on large screens -->
       <h1 class="text-5xl">
+        <a href="/">
         <span class="text-sky-600">
           Mood
         </span>
         <span class="bg-gradient-to-r text-transparent from-red-500 to-orange-500 bg-clip-text">
           Sync
         </span>
+        </a>
       </h1>
       <button id="menuButton" class="md:hidden block">
         <i class="fas fa-bars text-white text-2xl"></i>
@@ -29,7 +31,6 @@
     </div>
 
     <nav class="hidden md:flex justify-center md:justify-end font-medium" id="navLinks"> <!-- Hide nav links on small screens, show on large screens -->
-      <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
       {{#if email}}
       <a href="/logout" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Log Out</a>
       {{else}}
@@ -45,8 +46,7 @@
     </nav>
 
     <!-- Mobile Navigation Menu (hidden by default, shown when hamburger button is clicked) -->
-    <nav class="md:hidden text-center font-medium" id="mobileMenu">
-      <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
+    <nav class="hidden text-center font-medium" id="mobileMenu">
       {{#if email}}
       <a href="/logout" class="block my-2">Log Out</a>
       {{else}}
