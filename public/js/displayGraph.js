@@ -1,3 +1,26 @@
+// Set up the chart dimensions and margins
+let width = Math.min(window.innerWidth, 700);
+let height = width * 0.67; // Adjust the aspect ratio as needed
+const margin = { top: 20, right: 20, bottom: 60, left: 60 };
+let averagePercentages = [];
+let allMoodCategories = [];
+
+// Function to calculate the average percentage for each mood category
+function calculateAveragePercentages(data, allMoodCategories) {
+  const totalUsers = data.length;
+  const moodCount = allMoodCategories.reduce((acc, moodCategory) => {
+    acc[moodCategory] = data.reduce((sum, mood) => sum + mood[moodCategory], 0);
+    return acc;
+  }, {});
+
+   averagePercentages = allMoodCategories.map(moodCategory => ({
+    entry: moodCategory,
+    percentage: (moodCount[moodCategory] / totalUsers)
+  }));
+
+  return averagePercentages;
+}
+
 async function processMoodsData() {
   try {
     // Fetch moods data from the API endpoint
@@ -8,42 +31,23 @@ async function processMoodsData() {
     const moodsData = await response.json();
 
     // Calculate the average percentage for each mood category
-    const allMoodCategories = ["joy", "surprise", "sadness", "disgust", "anger", "fear"];
-    const averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
+     allMoodCategories = ["joy", "surprise", "sadness", "disgust", "anger", "fear"];
+     averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
 
-    // Use the average percentages to create the bar chart
+    // Create the bar chart initially
     createBarChart(averagePercentages, allMoodCategories);
-
   } catch (error) {
     console.error(error);
   }
 }
 
-// Function to calculate the average percentage for each mood category
-function calculateAveragePercentages(data, allMoodCategories) {
-  const totalUsers = data.length;
-  const moodCount = allMoodCategories.reduce((acc, moodCategory) => {
-    acc[moodCategory] = data.reduce((sum, mood) => sum + mood[moodCategory], 0);
-    return acc;
-  }, {});
-
-  const averagePercentages = allMoodCategories.map(moodCategory => ({
-    entry: moodCategory,
-    percentage: (moodCount[moodCategory] / totalUsers)
-  }));
-
-  return averagePercentages;
-}
-
 
 // Function to create the bar chart
 function createBarChart(data, allMoodCategories) {
-  // Set up the chart dimensions and margins
-  const width = 600;
-  const height = 400;
-  const margin = { top: 20, right: 20, bottom: 60, left: 60 }; // Increased bottom margin to accommodate the y-axis labels
+  // Remove the existing SVG container
+  d3.select("#chartContainer svg").remove();
 
-  // Create the SVG container
+  // Create the SVG container with updated dimensions
   const svg = d3.select("#chartContainer")
     .append("svg")
     .attr("width", width)
@@ -81,6 +85,39 @@ function createBarChart(data, allMoodCategories) {
   svg.append("g")
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(y).ticks(10).tickFormat(d => `${d}%`)); // Set tick formatting to display percentage with '%'
+}
+
+// Function to update the chart dimensions based on the viewport size
+const updateChartDimensions = () => {
+  width = Math.min(window.innerWidth, 700);
+  height = width * 0.67; // Adjust the aspect ratio as needed
+
+  // Call the function to redraw the chart with updated dimensions
+  createBarChart(averagePercentages, allMoodCategories);
+};
+
+async function processMoodsData() {
+  try {
+    // Fetch moods data from the API endpoint
+    const response = await fetch('/api/moods');
+    if (!response.ok) {
+      throw new Error('Failed to fetch moods data');
+    }
+    const moodsData = await response.json();
+
+    // Calculate the average percentage for each mood category
+     allMoodCategories = ["joy", "surprise", "sadness", "disgust", "anger", "fear"];
+     averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
+
+    // Create the bar chart initially
+    createBarChart(averagePercentages, allMoodCategories);
+
+    // Start the timer to check for window size changes periodically
+    setInterval(updateChartDimensions, 2000); // Adjust the interval as needed
+
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // Call the function to fetch and process the moods data and create the graph
