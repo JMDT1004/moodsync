@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   background-image: linear-gradient(45deg, aquamarine, #FFF689);
   background-size: 400% 400%;
   animation: flow 10s linear infinite;

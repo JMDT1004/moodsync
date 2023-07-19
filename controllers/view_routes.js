@@ -22,9 +22,8 @@ function findMaxProperty(objectData, objectProperties) {
     }
   }
 
-  return { property: maxProperty, number: maxNumber };
+  return { property: maxProperty, rating: maxNumber };
 }
-
 
 // Login page
 router.get('/login', (req, res) => {
@@ -53,6 +52,7 @@ router.get('/register', (req, res) => {
 });
 
 router.get('/mood', isAuthenticated, async (req, res) => {
+  console.log("Got into the get route");
   try {
     const user = await User.findByPk(req.session.user_id, {
       include: Mood
@@ -61,11 +61,9 @@ router.get('/mood', isAuthenticated, async (req, res) => {
     const moods = user.moods.map(mood => {
       const plainMood = mood.get({ plain: true });
       const moodDisplay = returnResult(plainMood);
-
-      return { ...plainMood, moodDisplay };
+      const color = attachColor(moodDisplay);
+      return { ...plainMood, color };
     });
-
-    console.log("These are the moods: ", moods);
 
     res.render("mood", {
       email: user.email,
@@ -78,7 +76,8 @@ router.get('/mood', isAuthenticated, async (req, res) => {
   }
 });
 
-//specific mood page
+
+// specific mood page
 router.get('/mood/:id', isAuthenticated, async (req, res) => {
   try {
     const user = await User.findByPk(req.session.user_id, {
@@ -92,28 +91,55 @@ router.get('/mood/:id', isAuthenticated, async (req, res) => {
         userId: user.id
       },
       raw: true
-    }); // Find the specific mood by ID associated with the user
+    });
 
     if (!mood) {
       // Handle the case if the mood is not found
-      return res.status(404).send('Mood not found');
+      return res.redirect("/mood");
     }
 
-    const moodDisplay = returnResult(mood);
-    console.log(mood);
-    const color = attachColor(moodDisplay);
-    res.render('display', {
-      email: user.email,
-      entry: { ...mood, color } // Pass the single mood object with moodDisplay
+    const moodProperties = ['anger', 'joy', 'disgust', 'sadness', 'fear', 'surprise'];
+
+    const moodColors = moodProperties.map(property => {
+      return {
+        property,
+        rating: mood[property],
+        color: attachColor({ property, rating: mood[property] })
+      };
     });
+
+
+    const moodWithColors = moodProperties.reduce((moodWithColors, property) => {
+      const colorProp = `${property}Color`;
+      moodWithColors[colorProp] = moodColors.find(color => color.property === property).color;
+      return moodWithColors;
+    }, { ...mood });
+
+    res.render('display', {
+      id: mood.id,
+      email: user.email,
+      title: mood.title,
+      entry: mood.entry,
+      anger: moodWithColors.anger,
+      fear: moodWithColors.fear,
+      sadness: moodWithColors.sadness,
+      disgust: moodWithColors.disgust,
+      surprise: moodWithColors.surprise,
+      joy: moodWithColors.joy,
+      angerColor: moodWithColors.angerColor,
+      fearColor: moodWithColors.fearColor,
+      sadnessColor: moodWithColors.sadnessColor,
+      disgustColor: moodWithColors.disgustColor,
+      surpriseColor: moodWithColors.surpriseColor,
+      joyColor: moodWithColors.joyColor
+    });
+    
   } catch (error) {
     // Handle any errors
     console.error(error);
     res.status(500).send('An error occurred');
   }
 });
-
-
 
 router.get('/entry', isAuthenticated, async (req, res) => {
   const user = await User.findByPk(req.session.user_id);
@@ -127,7 +153,6 @@ function returnResult(data) {
   const searchCriteria = ['joy', 'sadness', 'fear', 'anger', 'surprise', 'disgust'];
   const maxResult = findMaxProperty(data, searchCriteria);
 
-  console.log(maxResult);
   return maxResult;
 }
 
