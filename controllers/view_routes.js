@@ -21,7 +21,7 @@ function findMaxProperty(objectData, objectProperties) {
       maxProperty = prop;
     }
   }
-
+  console.log("Returning property: ", maxProperty, "Returning rating of: ", maxNumber)
   return { property: maxProperty, rating: maxNumber };
 }
 
@@ -151,7 +151,7 @@ router.get('/entry', isAuthenticated, async (req, res) => {
 function returnResult(data) {
   const searchCriteria = ['joy', 'sadness', 'fear', 'anger', 'surprise', 'disgust'];
   const maxResult = findMaxProperty(data, searchCriteria);
-
+  console.log(maxResult);
   return maxResult;
 }
 
