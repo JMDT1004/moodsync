@@ -20,9 +20,9 @@ To use the MoodSync web app:
 
 1. Open your preferred web browser.
 
-2. Access the MoodSync web app by clicking on the following link: 
+2. Access the MoodSync web app using on the following link: https://moodsync-calendar-1a40e0647873.herokuapp.com/
 
-3. 'Register' an account if you are a new user otherwise 'Login' 
+3. 'Register' an account if you are a new user, otherwise 'Login' 
 
 4. The App will prompt you for a new Mood Entry if you are a new user. Existing users will be shown a table containing their previous mood Entries.
 
@@ -36,7 +36,7 @@ Tailwind framework was primarily used for styling.
 ## License
 MIT License
 
-Copyright (c) 2023 , JMDT1004, jamilbarrett,
+Copyright (c) 2023 AnthonyDipopolo, Reyesfrancisp, JMDT1004, jamilbarrett,
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
