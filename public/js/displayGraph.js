@@ -4,8 +4,37 @@ width = width - 50;
 let height = width * 0.67; // Adjust the aspect ratio as needed
 const margin = { top: 20, right: 60, bottom: 60, left: 60 };
 let averagePercentages = [];
-let allMoodCategories = [];
+const allMoodCategories = ["joy", "surprise", "sadness", "disgust", "anger", "fear"];
 const colors = ["yellow", "green", "blue", "purple", "red", "orange"];
+
+// Function to update the chart dimensions based on the viewport size
+const updateChartDimensions = () => {
+  width = Math.min(window.innerWidth, 700);
+  width = width - 50;
+  height = width * 0.67; // Adjust the aspect ratio as needed
+
+  // Call the function to fetch and process the moods data and create the graph
+processMoodsData();
+};
+
+async function processMoodsData() {
+  try {
+    // Fetch moods data from the API endpoint
+    const response = await fetch('/api/moods');
+    if (!response.ok) {
+      throw new Error('Failed to fetch moods data');
+    }
+    const moodsData = await response.json();
+
+    // Calculate the average percentage for each mood category
+     averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
+
+    // Create the bar chart initially
+    createBarChart(averagePercentages, allMoodCategories);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // Function to calculate the average percentage for each mood category
 function calculateAveragePercentages(data, allMoodCategories) {
@@ -22,27 +51,6 @@ function calculateAveragePercentages(data, allMoodCategories) {
 
   return averagePercentages;
 }
-
-async function processMoodsData() {
-  try {
-    // Fetch moods data from the API endpoint
-    const response = await fetch('/api/moods');
-    if (!response.ok) {
-      throw new Error('Failed to fetch moods data');
-    }
-    const moodsData = await response.json();
-
-    // Calculate the average percentage for each mood category
-     allMoodCategories = ["joy", "surprise", "sadness", "disgust", "anger", "fear"];
-     averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
-
-    // Create the bar chart initially
-    createBarChart(averagePercentages, allMoodCategories);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 
 // Function to create the bar chart
 function createBarChart(data, allMoodCategories) {
@@ -88,40 +96,6 @@ function createBarChart(data, allMoodCategories) {
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(y).ticks(10).tickFormat(d => `${d}%`)); // Set tick formatting to display percentage with '%'
 }
-
-// Function to update the chart dimensions based on the viewport size
-const updateChartDimensions = () => {
-  width = Math.min(window.innerWidth, 700);
-  width = width - 50;
-  height = width * 0.67; // Adjust the aspect ratio as needed
-
-  // Call the function to redraw the chart with updated dimensions
-  createBarChart(averagePercentages, allMoodCategories);
-};
-
-async function processMoodsData() {
-  try {
-    // Fetch moods data from the API endpoint
-    const response = await fetch('/api/moods');
-    if (!response.ok) {
-      throw new Error('Failed to fetch moods data');
-    }
-    const moodsData = await response.json();
-
-    // Calculate the average percentage for each mood category
-     allMoodCategories = ["joy", "surprise", "sadness", "disgust", "anger", "fear"];
-     averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
-
-    // Create the bar chart initially
-    createBarChart(averagePercentages, allMoodCategories);
-
     // Start the timer to check for window size changes periodically
     setInterval(updateChartDimensions, 500); // Adjust the interval as needed
 
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Call the function to fetch and process the moods data and create the graph
-processMoodsData();
