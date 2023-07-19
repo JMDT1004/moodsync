@@ -45,7 +45,7 @@ function percentage(num) {
 router.post('/entry', async (req, res) => {
   try {
     const user = await User.findByPk(req.session.user_id);
-    const newEntry = req.body.text;
+    const newEntry = req.body.entry;
     const newTitle = req.body.title.toUpperCase();
     const moodData = await getMoodData(newEntry);
     //console.log(moodData.emotions_normalized);
