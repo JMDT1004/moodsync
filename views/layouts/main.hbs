@@ -13,34 +13,60 @@
 </head>
 
 <body>
-  <header class="bg-gradient-to-r from-purple-400 via-green-400 to-red-400">
-<div class="text-center">
-  <h1 class="text-5xl">
-    <span class="text-sky-600">
-      Mood
-    </span>
-    <span class="bg-gradient-to-r text-transparent from-red-500 to-orange-500 bg-clip-text">
-      Sync
-    </span>
-  </h1>
-</div>
+       <header class="bg-gradient-to-r from-purple-400 via-green-400 to-red-400 p-4">
+    <div class="flex justify-between items-center"> <!-- Flexbox container for centering on small screens and left-aligning on large screens -->
+      <h1 class="text-5xl">
+        <span class="text-sky-600">
+          Mood
+        </span>
+        <span class="bg-gradient-to-r text-transparent from-red-500 to-orange-500 bg-clip-text">
+          Sync
+        </span>
+      </h1>
+      <button id="menuButton" class="md:hidden block">
+        <i class="fas fa-bars text-white text-2xl"></i>
+      </button>
+    </div>
 
-    <nav class="text-center font-medium">
+    <nav class="hidden md:flex justify-center md:justify-end font-medium" id="navLinks"> <!-- Hide nav links on small screens, show on large screens -->
       <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
       {{#if email}}
-      <a href="/logout">Log Out</a>
+      <a href="/logout" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Log Out</a>
       {{else}}
       {{#if isLoggedIn}}
-      <a href="/mood">Mood</a>
+      <a href="/mood" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Mood</a>
       {{else}}
-      <a href="/login" class="{{#if isLogin}}hidden{{/if}}">Login</a>
-      <a href="/register" class="{{#if isRegister}}hidden{{/if}}">Register</a>
+      <a href="/login" class="{{#if isLogin}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Login</a>
+      <a href="/register" class="{{#if isRegister}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Register</a>
       {{/if}}
       {{/if}}
       <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}}">Welcome,
         {{email}}</p>
-
     </nav>
+
+    <!-- Mobile Navigation Menu (hidden by default, shown when hamburger button is clicked) -->
+    <nav class="md:hidden text-center font-medium" id="mobileMenu">
+      <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
+      {{#if email}}
+      <a href="/logout" class="block my-2">Log Out</a>
+      {{else}}
+      {{#if isLoggedIn}}
+      <a href="/mood" class="block my-2">Mood</a>
+      {{else}}
+      <a href="/login" class="{{#if isLogin}}hidden{{/if}} block my-2">Login</a>
+      <a href="/register" class="{{#if isRegister}}hidden{{/if}} block my-2">Register</a>
+      {{/if}}
+      {{/if}}
+      <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}} my-2">Welcome,
+        {{email}}</p>
+    </nav>
+
+    <script>
+    document.getElementById('menuButton').addEventListener('click', function () {
+      var mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
   </header>
   {{{body}}}
 
