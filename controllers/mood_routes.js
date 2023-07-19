@@ -90,7 +90,7 @@ router.post('/mood/:id', isAuthenticated, async (req, res) => {
 
     // Update the mood entry with the new values
     mood.set({
-      title: req.body.title,
+      title: req.body.title.toUpperCase(),
       entry: req.body.entry,
       joy: percentage(joy),
       surprise: percentage(surprise),
@@ -134,6 +134,9 @@ router.delete('/mood/:id', isAuthenticated, async (req, res) => {
 
     console.log("Got into the delete route");
     // Redirect to the mood page
+    console.log('Response status:', res.statusCode);
+    console.log('Response headers:', res.getHeaders());
+
     res.redirect('/mood');
 
     console.log("redirect?");
@@ -142,8 +145,5 @@ router.delete('/mood/:id', isAuthenticated, async (req, res) => {
     res.status(500).send('An error occurred');
   }
 });
-
-
-
 
 module.exports = router;
