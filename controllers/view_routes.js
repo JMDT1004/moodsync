@@ -36,7 +36,6 @@ router.get('/login', (req, res) => {
 
 // Homepage
 router.get('/', (req, res) => {
-  if (req.session.user_id) return res.redirect('/entry');
 
   res.render('index', {
     isHome: true,
