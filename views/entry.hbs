@@ -1,12 +1,24 @@
-<h1>How are we feeling Today?</h1>
+<div class="container mx-auto p-8">
+        <h1 class="text-center">How are we feeling Today?</h1>
+        
+          <form class=" flex flex-col m-4 p-4" action="/mood/{{this.id}}" method="POST">
+      <label for="title" class="text-lg font-semibold mb-2">Title:</label>
+      <input class="uppercase border border-gray-300 rounded-md py-2 px-3 mb-4" type="text" id="title" name="title"
+        value="{{this.title}}">
+      <label for="entry" class="text-lg font-semibold mb-2">Entry:</label>
+      <textarea id="entry" name="entry"
+        class="border border-gray-300 rounded-md py-2 px-3 h-40 resize-none">{{this.entry}}</textarea>
+          </form>
 
-<form class="form-entry" action="/entry" method="POST" class="form-container">
-    <button class="pbtn" style="">
-        <i class="fas fa-pencil-alt"></i>
-    </button>
-    <input name="title" type="text" placeholder="Title" class="title-input">
-    <input name="text" type="text" placeholder="What mood are we in today?" class="text-input">
-    <button class="tbtn">
-        <i class="far fa-trash-alt"></i>
-    </button>
-</form>
+            <!-- Buttons moved to the right and left -->
+            <div class="flex justify-between mt-4"> <!-- Changed justify-between to justify-start -->
+                <button class="ml-8 sbtn bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-colors duration-300" onclick="redirectToEntry()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h.01M6 4h10a4 4 0 014 4v8a2 2 0 01-2 2H6a2 2 0 01-2-2V8a4 4 0 014-4z"/>
+                    </svg>
+                    Save Entry
+                </button>
+               
+            </div>
+        </form>
+    </div>
