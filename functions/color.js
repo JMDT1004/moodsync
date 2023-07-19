@@ -32,15 +32,15 @@ function attachColor(moodDisplay) {
         }
       case 'fear':
         if (rating >= 0 && rating <= 20) {
-          return "bg-violet-200";
+          return "bg-orange-200";
         } else if (rating > 20 && rating <= 40) {
-          return "bg-violet-300";
+          return "bg-orange-300";
         } else if (rating > 40 && rating <= 60) {
-          return "bg-violet-500";
+          return "bg-orange-500";
         } else if (rating > 60 && rating <= 80) {
-          return "bg-violet-700";
+          return "bg-orange-700";
         } else if (rating > 80 && rating <= 100) {
-          return "bg-violet-900";
+          return "bg-orange-900";
         } else {
           return "bg-neutral-950";
         }
@@ -60,29 +60,29 @@ function attachColor(moodDisplay) {
         }
       case 'surprise':
         if (rating >= 0 && rating <= 20) {
-          return "bg-rose-200";
+          return "bg-green-200";
         } else if (rating > 20 && rating <= 40) {
-          return "bg-rose-300";
+          return "bg-green-300";
         } else if (rating > 40 && rating <= 60) {
-          return "bg-rose-400";
+          return "bg-green-400";
         } else if (rating > 60 && rating <= 80) {
-          return "bg-rose-500";
+          return "bg-green-500";
         } else if (rating > 80 && rating <= 100) {
-          return "bg-rose-700";
+          return "bg-green-700";
         } else {
           return "bg-neutral-950";
         }
       case 'disgust':
         if (rating >= 0 && rating <= 20) {
-          return "bg-lime-200";
+          return "bg-purple-200";
         } else if (rating > 20 && rating <= 40) {
-          return "bg-lime-300";
+          return "bg-purple-300";
         } else if (rating > 40 && rating <= 60) {
-          return "bg-lime-500";
+          return "bg-purple-500";
         } else if (rating > 60 && rating <= 80) {
-          return "bg-lime-700";
+          return "bg-purple-700";
         } else if (rating > 80 && rating <= 100) {
-          return "bg-lime-900";
+          return "bg-purple-900";
         } else {
           return "bg-neutral-950";
         }

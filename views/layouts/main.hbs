@@ -11,15 +11,14 @@
   <link rel="stylesheet" href="css/style.css">
 =======
   <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="css/style.css">
->>>>>>> b5770bc372129f9612bec381f4d4bb36ef8969d0
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
-  <header>
-    MoodSync
-    <nav class="">
+  <header class="bg-gradient-to-r from-purple-400 via-green-400 to-red-400">
+    <div class="text-slate-50 text-5xl text-center">MoodSync</div>
+    <nav class="text-center font-medium">
       <a href="/" class="{{#if isHome}}hidden{{/if}}">Home</a>
       {{#if email}}
       <a href="/logout">Log Out</a>
