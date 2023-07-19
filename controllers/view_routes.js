@@ -12,18 +12,29 @@ function isAuthenticated(req, res, next) {
 }
 
 function findMaxProperty(objectData, objectProperties) {
-  let maxNumber = -Infinity;
+  if (!objectData || !Object.keys(objectData).length || !Array.isArray(objectProperties) || objectProperties.length === 0) {
+    return null; // Return null if the input data is not valid or empty
+  }
+
+  let maxNumber = 0;
   let maxProperty = null;
 
   for (const prop of objectProperties) {
-    if (objectData[prop] > maxNumber) {
-      maxNumber = objectData[prop];
-      maxProperty = prop;
+    if (objectData.hasOwnProperty(prop) && typeof objectData[prop] === "number") {
+      if (objectData[prop] >= maxNumber) {
+        maxNumber = objectData[prop];
+        maxProperty = prop;
+      }
     }
   }
-  console.log("Returning property: ", maxProperty, "Returning rating of: ", maxNumber)
-  return { property: maxProperty, rating: maxNumber };
+
+  if (maxProperty !== null) {
+    console.log("Returning property:", maxProperty, "Returning rating of:", maxNumber);
+  }
+
+  return maxProperty !== null ? { property: maxProperty, rating: maxNumber } : null;
 }
+
 
 // Login page
 router.get('/login', (req, res) => {
@@ -151,7 +162,7 @@ router.get('/entry', isAuthenticated, async (req, res) => {
 function returnResult(data) {
   const searchCriteria = ['joy', 'sadness', 'fear', 'anger', 'surprise', 'disgust'];
   const maxResult = findMaxProperty(data, searchCriteria);
-  console.log(maxResult);
+  console.log("The max result being passed is: ", maxResult);
   return maxResult;
 }
 
