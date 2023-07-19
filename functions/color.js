@@ -1,6 +1,6 @@
 function attachColor(moodDisplay) {
   const rating = parseFloat(moodDisplay.rating);
-
+console.log("Current mood: ", moodDisplay.property, " Curren rating: ", rating);
   switch (moodDisplay.property) {
     case 'anger':
       if (rating >= 0 && rating <= 20) {

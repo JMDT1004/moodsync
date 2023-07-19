@@ -63,7 +63,7 @@ router.get('/mood', isAuthenticated, async (req, res) => {
       const color = attachColor(moodDisplay);
       return { ...plainMood, color };
     });
-
+console.log("this is the mood: ", moods);
     res.render("mood", {
       email: user.email,
       entry: moods // Pass the moods data
