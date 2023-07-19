@@ -12,7 +12,7 @@ const db = require("./db/connection");
 const user_routes = require("./controllers/user_routes");
 const view_routes = require("./controllers/view_routes");
 const mood_routes = require("./controllers/mood_routes");
-// const d3 = require("./controllers/d3");
+const graph = require("./controllers/graph_routes");
 
 
 const app = express();
@@ -45,7 +45,7 @@ app.use(session({
 }));
 
 // Load Routes
-app.use("/", [mood_routes, view_routes, user_routes]);
+app.use("/", [mood_routes, view_routes, user_routes, graph]);
 
 // Connect to the db and create all tables based off of our models
 db.sync({ force: false })
