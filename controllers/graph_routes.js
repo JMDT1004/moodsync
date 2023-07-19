@@ -15,9 +15,6 @@ router.get('/api/moods', async (req, res) => {
 
 module.exports = router;
 
-    
-
-
 router.get('/graph', (req, res) => {
   res.render('graph');
 });
