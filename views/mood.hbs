@@ -1,17 +1,17 @@
 
 <button class="new-entry" onclick="redirectToEntry()">Create Entry</button>
 
-
-<table class="entry-table">
-    <tr>
-        <th class="vertical-table">Day Dataset Table</th>
-        <th class="entry-number">Entry 1</th>
-        <th class="empty-th">
-            <div class="entry-title"></div>
-            <div class="entry-text"></div>
-            <div class="mood-data"></div>
-        </th>
-</table>
+{{!-- section that outputs the data from the tables --}}
+<main class="">
+  {{#each entry}}
+    <div class="flex rounded-lg p-4 m-10 shadow-lg hover:shadow-2xl justify-center {{this.color}}"> 
+      <a href="/mood/{{this.id}}"> <!-- Clickable link with entry ID as a parameter -->
+        <p class= "text-white bg-neutral-600 text-center text-l md:text-xl lg:text-3xl">{{this.title}}</p>
+        <p class= "text-white p-4 m-4 bg-slate-500 text-sm md:text-base lg:text-l">{{this.entry}}</p>
+      </a>
+    </div>
+  {{/each}}
+</main>
 
 
 <script>
