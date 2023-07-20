@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
     // Handle invalid password
     if (!isValidPass) {
       console.log("password invalid")
-      return res.send({ error: 'Password Incorrect' });
+      return res.redirect('/login');
     }
 
     // User has been validated, create a session
