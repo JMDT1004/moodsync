@@ -17,13 +17,11 @@ function findMaxProperty(objectData, objectProperties) {
   console.log("Object data being passed is: ", objectData, "Object properties being passed are: ", objectProperties);
 
   const { property, rating } = objectProperties.reduce((max, prop) => {
-    if (objectData.hasOwnProperty(prop) && typeof objectData[prop] === "number") {
-      if (objectData[prop] >= max.rating) {
+      if (parseFloat(objectData[prop]) >= parseFloat(max.rating)) {
         max.property = prop;
-        max.rating = objectData[prop];
+        max.rating = parseFloat(objectData[prop]);
       }
-    }
-    console.log("This is inside the findMaxProperty fucntion: outputting: ", max)
+    console.log("This is inside the findMaxProperty function: outputting: ", max)
     return max;
   }, { property: "joy", rating: 0 });
 
