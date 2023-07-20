@@ -12,6 +12,7 @@ function isAuthenticated(req, res, next) {
 }
 
 function findMaxProperty(objectData, objectProperties) {
+  console.log("Object data being passed is: ", objectData, "Object properties being passed are: ", objectProperties);
   if (!objectData || !Object.keys(objectData).length || !Array.isArray(objectProperties) || objectProperties.length === 0) {
     return null; // Return null if the input data is not valid or empty
   }
@@ -71,10 +72,12 @@ router.get('/mood', isAuthenticated, async (req, res) => {
     const moods = user.moods.map(mood => {
       const plainMood = mood.get({ plain: true });
       const moodDisplay = returnResult(plainMood);
+      console.log("The data being passed to attachColor is: ", moodDisplay);
       const color = attachColor(moodDisplay);
       return { ...plainMood, color };
     });
-console.log("this is the mood: ", moods);
+
+    console.log("this is the mood: ", moods);
     res.render("mood", {
       email: user.email,
       entry: moods // Pass the moods data
@@ -143,7 +146,7 @@ router.get('/mood/:id', isAuthenticated, async (req, res) => {
       surpriseColor: moodWithColors.surpriseColor,
       joyColor: moodWithColors.joyColor
     });
-    
+
   } catch (error) {
     // Handle any errors
     console.error(error);
