@@ -15,25 +15,22 @@ function isAuthenticated(req, res, next) {
 
 function findMaxProperty(objectData, objectProperties) {
   console.log("Object data being passed is: ", objectData, "Object properties being passed are: ", objectProperties);
- 
-  let maxNumber = 0;
-  let maxProperty = "joy";
 
-  for (const prop of objectProperties) {
+  const { property, rating } = objectProperties.reduce((max, prop) => {
     if (objectData.hasOwnProperty(prop) && typeof objectData[prop] === "number") {
-      if (objectData[prop] >= maxNumber) {
-        maxNumber = objectData[prop];
-        maxProperty = prop;
+      if (objectData[prop] >= max.rating) {
+        max.property = prop;
+        max.rating = objectData[prop];
       }
     }
-  }
+    console.log("This is inside the findMaxProperty fucntion: outputting: ", max)
+    return max;
+  }, { property: "joy", rating: 0 });
 
-  if (maxProperty !== null) {
-    console.log("Returning property:", maxProperty, "Returning rating of:", maxNumber);
-  }
-
-  return maxProperty !== null ? { property: maxProperty, rating: maxNumber } : {property: "joy", rating: 0.00};
+  console.log("Returning property:", property, "Returning rating of:", rating);
+  return { property, rating };
 }
+
 
 
 // Login page
