@@ -14,6 +14,9 @@ MoodSync is designed to record the emotional state of users based on their journ
 ## Installation
 Application can be cloned from this github repo : https://github.com/Reyesfrancisp/MoodSync_Calendar.git.
 
+##LANDING PAGE
+![Screenshot (9)](https://github.com/Reyesfrancisp/MoodSync_Calendar/assets/131495987/2ac12831-fe7e-4805-bfec-2ce40068d1c8)
+
 
 ## Usage
 To use the MoodSync web app:
