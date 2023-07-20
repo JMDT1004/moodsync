@@ -25,7 +25,7 @@ async function processMoodsData() {
     }
     console.log("Response from the server: ", response);
     const moodsData = await response.json();
-
+    console.log(moodsData);
     // Calculate the average percentage for each mood category
     const averagePercentages = calculateAveragePercentages(moodsData, allMoodCategories);
 
@@ -36,17 +36,11 @@ async function processMoodsData() {
   }
 }
 
-// Function to calculate the average percentage for each mood category
 function calculateAveragePercentages(data, allMoodCategories) {
   const totalUsers = data.length;
-  const moodCount = allMoodCategories.reduce((acc, moodCategory) => {
-    acc[moodCategory] = data.reduce((sum, mood) => sum + mood[moodCategory], 0);
-    return acc;
-  }, {});
-
   const averagePercentages = allMoodCategories.map(moodCategory => ({
     entry: moodCategory,
-    percentage: (moodCount[moodCategory] / totalUsers)
+    percentage: data.reduce((sum, mood) => sum + mood[moodCategory], 0) / totalUsers
   }));
   console.log("These are the average percentages: ", averagePercentages);
   return averagePercentages;
