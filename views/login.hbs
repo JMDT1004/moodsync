@@ -1,5 +1,19 @@
-<form class="login" action="/login" method="POST">
+{{!-- error message --}}
+{{!-- {{#if error}}
+  <p class="error-message">Invalid credentials. Please check your email/username and password.</p>
+{{/if}} --}}
+
+<form id="login-form" class="login" action="/login" method="POST">
     <input class="user" name="email" type="text" placeholder="username or email">
     <input class="pass" name="password" type="password" placeholder="enter password">
     <button class="btn">Log in</button>
 </form>
+
+
+<div id="error-message-container-login"></div>
+
+<script src="/js/error.js"></script>
+{{!-- error message --}}
+{{!-- {{#if error}}
+  <p class="error-message">Invalid credentials. Please check your email/username and password.</p>
+{{/if}} --}}
