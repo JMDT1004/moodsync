@@ -7,6 +7,25 @@ body {
   color: black;
 }
 
+
+  body {
+    background-image: url(https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2572.jpg?w=1800&t=st=1689794791~exp=1689795391~hmac=37d5fe62aec1910c0d8d59c23be7e2bfacaf0b26baa3320c3b611d2f0af8eb87);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+
+
+h2:hover {
+  background: linear-gradient(45deg, purple 0%, darkblue 50%, white 120%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-position 2s;
+}
+
+
 .header {
   display: flex;
   justify-content: space-between;

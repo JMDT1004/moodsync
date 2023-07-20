@@ -13,7 +13,7 @@
 </head>
 
 <body class="bg-teal-200">
-       <header class="bg-gradient-to-r from-purple-400 via-green-400 to-red-400 p-4">
+       <header class="background-image: url(https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2572.jpg?w=1800&t=st=1689794791~exp=1689795391~hmac=37d5fe62aec1910c0d8d59c23be7e2bfacaf0b26baa3320c3b611d2f0af8eb87)">
     <div class="flex justify-between items-center"> <!-- Flexbox container for centering on small screens and left-aligning on large screens -->
       <h1 class="text-5xl">
         <a href="/">
@@ -25,7 +25,7 @@
         </span>
         </a>
       </h1>
-      <button id="menuButton" class="md:hidden block">
+      <button id="menuButton" class="md:hidden block pr-2">
         <i class="fas fa-bars text-white text-2xl"></i>
       </button>
     </div>
@@ -37,8 +37,8 @@
       {{#if isLoggedIn}}
       <a href="/mood" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Mood</a>
       {{else}}
-      <a href="/login" class="{{#if isLogin}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Login</a>
-      <a href="/register" class="{{#if isRegister}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Register</a>
+      <a href="/login" class="{{#if isLogin}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-white border-white padding-right 2px">Login</a>
+      <a href="/register" class="{{#if isRegister}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-white border-white">Sign Up</a>
       {{/if}}
       {{/if}}
       <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}}">Welcome,
@@ -48,16 +48,16 @@
     <!-- Mobile Navigation Menu (hidden by default, shown when hamburger button is clicked) -->
     <nav class="hidden text-center font-medium" id="mobileMenu">
       {{#if email}}
-      <a href="/logout" class="block my-2">Log Out</a>
+      <a href="/logout" class="block my-2 text-white" style="color: white;">Log Out</a>
       {{else}}
       {{#if isLoggedIn}}
-      <a href="/mood" class="block my-2">Mood</a>
+      <a href="/mood" class="block my-2 text-white" style="color: white;">Mood</a>
       {{else}}
-      <a href="/login" class="{{#if isLogin}}hidden{{/if}} block my-2">Login</a>
-      <a href="/register" class="{{#if isRegister}}hidden{{/if}} block my-2">Register</a>
+      <a href="/login" class="{{#if isLogin}}hidden{{/if}} text-white block my-2 padding-right 2px">Login</a>
+      <a href="/register" class="{{#if isRegister}}hidden{{/if}} text-white block my-2">Sign Up</a>
       {{/if}}
       {{/if}}
-      <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}} my-2">Welcome,
+      <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}} my-2 text-white">Welcome,
         {{email}}</p>
     </nav>
 
