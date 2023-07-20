@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Mood = require('../models/Mood');
+const User = require('../models/User');
+
 
 // Middleware
 function isAuthenticated(req, res, next) {
@@ -25,7 +27,8 @@ router.get('/api/moods', isAuthenticated, async (req, res) => {
 router.get('/graph', isAuthenticated, (req, res) => {
   res.render('graph', {
     isHome: true,
-    isLoggedIn: req.session.user_id
+    isLoggedIn: req.session.user_id,
+    // username: user.username
   });
 });
  
