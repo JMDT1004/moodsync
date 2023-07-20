@@ -76,7 +76,8 @@ router.get('/mood', isAuthenticated, async (req, res) => {
     console.log("this is the mood: ", moods);
     res.render("mood", {
       email: user.email,
-      entry: moods // Pass the moods data
+      entry: moods, // Pass the moods data
+      username: user.username
     });
   } catch (error) {
     // Handle any errors
@@ -154,7 +155,8 @@ router.get('/entry', isAuthenticated, async (req, res) => {
   const user = await User.findByPk(req.session.user_id);
 
   res.render('entry', {
-    email: user.email
+    email: user.email,
+    username: user.username
   });
 });
 
@@ -164,6 +166,7 @@ function returnResult(data) {
   const maxResult = findMaxProperty(data, searchCriteria);
   console.log("The max result being passed is: ", maxResult);
   return maxResult;
-}
+};
+
 
 module.exports = router;
