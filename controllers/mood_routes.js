@@ -38,7 +38,7 @@ async function getMoodData(dataText) {
 }
 
 function percentage(num) {
-  return num * 100;
+  return parseFloat(num * 100);
 }
 
 
@@ -49,12 +49,16 @@ router.post('/entry', async (req, res) => {
     const newTitle = req.body.title.toUpperCase();
     const moodData = await getMoodData(newEntry);
     //console.log(moodData.emotions_normalized);
-    let surpriseData = percentage(moodData.emotions_normalized.surprise);
-    let joyData = percentage(moodData.emotions_normalized.joy);
-    let sadnessData = percentage(moodData.emotions_normalized.sadness);
-    let disgustData = percentage(moodData.emotions_normalized.disgust);
-    let fearData = percentage(moodData.emotions_normalized.fear);
-    let angerData = percentage(moodData.emotions_normalized.anger);
+    const surpriseData = percentage(moodData.emotions_normalized.surprise);
+    const joyData = percentage(moodData.emotions_normalized.joy);
+    const sadnessData = percentage(moodData.emotions_normalized.sadness);
+    const disgustData = percentage(moodData.emotions_normalized.disgust);
+    const fearData = percentage(moodData.emotions_normalized.fear);
+    const angerData = percentage(moodData.emotions_normalized.anger);
+
+    console.log("Data to be stored: Surprise: ", surpriseData, "Joy: ", joyData,
+    "Sadness: ", sadnessData, "Disgust: ", disgustData, "Fear", fearData, "Anger", angerData);
+
 
     Mood.create({ userId: user.id, title: newTitle, entry: newEntry, joy: joyData, surprise: surpriseData, sadness: sadnessData, disgust: disgustData, anger: angerData, fear: fearData });
     // redirect them after the data is obtained
@@ -87,7 +91,7 @@ router.post('/mood/:id', isAuthenticated, async (req, res) => {
 
     const moodData = await getMoodData(req.body.entry);
     const { joy, surprise, sadness, disgust, fear, anger } = moodData.emotions_normalized;
-
+    
     // Update the mood entry with the new values
     mood.set({
       title: req.body.title.toUpperCase(),
