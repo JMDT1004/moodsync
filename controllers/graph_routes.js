@@ -23,7 +23,10 @@ router.get('/api/moods', isAuthenticated, async (req, res) => {
 });
 
 router.get('/graph', isAuthenticated, (req, res) => {
-  res.render('graph');
+  res.render('graph', {
+    isHome: true,
+    isLoggedIn: req.session.user_id
+  });
 });
  
  
