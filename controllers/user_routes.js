@@ -74,7 +74,7 @@ router.post('/register', async (req, res) => {
     // Check if the email is already taken
     const existingEmail = await User.findOne({ where: { email: req.body.email } });
     if (existingEmail) {
-      // Email is already taken, send a specific error message to the front end
+      // Email is already taken, send a error message to the front end
       // res.send('Email is already taken.' );
       return res.redirect('/register');
     }
@@ -82,7 +82,7 @@ router.post('/register', async (req, res) => {
     // Check if the username is already taken
     const existingUsername = await User.findOne({ where: { username: req.body.username } });
     if (existingUsername) {
-      // Username is already taken, send a specific error message to the front end
+      // Username is already taken, send a error message to the front end
       // res.send('Username is already taken.' );
       return res.redirect('/register');
 
@@ -102,13 +102,6 @@ router.post('/register', async (req, res) => {
     return res.status(500).json('Internal Server Error');
   }
 });
-
-
-  
-
-
-
-
 
 
 

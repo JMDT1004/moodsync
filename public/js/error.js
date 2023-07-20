@@ -64,7 +64,7 @@
 // //     })
 // //         .then(res => {
 // //             if (!res.ok) {
-// //                 // Check if the network response is not ok (i.e., HTTP status code is not in the range of 200-299)
+// //                 // Check if the network response is ok
 // //                 throw new Error('Network response was not ok');
 // //             }
 // //             return res.json();
