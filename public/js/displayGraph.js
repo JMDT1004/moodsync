@@ -41,7 +41,7 @@ function calculateAveragePercentages(data, allMoodCategories) {
   console.log("The total users are: ", totalUsers);
   const averagePercentages = allMoodCategories.map(moodCategory => ({
     entry: moodCategory,
-    percentage: data.reduce((sum, mood) => sum + mood[moodCategory], 0) / totalUsers
+    percentage: data.reduce((sum, mood) => parseFloat(sum) + parseFloat(mood[moodCategory]), 0) / totalUsers
   }));
   console.log("These are the average percentages: ", averagePercentages);
   return averagePercentages;
