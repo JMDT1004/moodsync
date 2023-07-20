@@ -8,21 +8,23 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body class="bg-teal-200">
-       <header class="background-image: url(https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2572.jpg?w=1800&t=st=1689794791~exp=1689795391~hmac=37d5fe62aec1910c0d8d59c23be7e2bfacaf0b26baa3320c3b611d2f0af8eb87)">
-    <div class="flex justify-between items-center"> <!-- Flexbox container for centering on small screens and left-aligning on large screens -->
+  <header
+    class="background-image: url(https://img.freepik.com/free-photo/vivid-blurred-colorful-background_58702-2572.jpg?w=1800&t=st=1689794791~exp=1689795391~hmac=37d5fe62aec1910c0d8d59c23be7e2bfacaf0b26baa3320c3b611d2f0af8eb87)">
+    <div class="flex justify-between items-center">
+      <!-- Flexbox container for centering on small screens and left-aligning on large screens -->
       <h1 class="text-5xl">
         <a href="/">
-        <span class="text-sky-600">
-          Mood
-        </span>
-        <span class="bg-gradient-to-r text-transparent from-red-500 to-orange-500 bg-clip-text">
-          Sync
-        </span>
+          <span class="text-sky-600">
+            Mood
+          </span>
+          <span class="bg-gradient-to-r text-transparent from-red-500 to-orange-500 bg-clip-text">
+            Sync
+          </span>
         </a>
       </h1>
       <button id="menuButton" class="md:hidden block pr-2">
@@ -30,15 +32,21 @@
       </button>
     </div>
 
-    <nav class="hidden md:flex justify-center md:justify-end font-medium" id="navLinks"> <!-- Hide nav links on small screens, show on large screens -->
+    <nav class="hidden md:flex justify-center md:justify-end font-medium" id="navLinks">
+      <!-- Hide nav links on small screens, show on large screens -->
       {{#if email}}
-      <a href="/logout" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Log Out</a>
+      <a href="/logout" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Log
+        Out</a>
       {{else}}
       {{#if isLoggedIn}}
-      <a href="/mood" class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Mood</a>
+      <a href="/mood"
+        class="inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-black border-white">Mood</a>
       {{else}}
-       <a href="/login" class="{{#if isLogin}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-white border-white padding-right 2px">Login</a>
-      <a href="/register" class="{{#if isRegister}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-white border-white">Sign Up</a>
+      <a href="/login"
+        class="{{#if isLogin}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-white border-white padding-right 2px">Login</a>
+      <a href="/register"
+        class="{{#if isRegister}}hidden{{/if}} inline-block border border-[1px] rounded-full px-3 py-1 mx-1 text-white border-white">Sign
+        Up</a>
       {{/if}}
       {{/if}}
       <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}}">Welcome,
@@ -53,23 +61,30 @@
       {{#if isLoggedIn}}
       <a href="/mood" class="block my-2">Mood</a>
       {{else}}
-  <a href="/login" class="{{#if isLogin}}hidden{{/if}} text-white block my-2 padding-right 2px">Login</a>
+      <a href="/login" class="{{#if isLogin}}hidden{{/if}} text-white block my-2 padding-right 2px">Login</a>
       <a href="/register" class="{{#if isRegister}}hidden{{/if}} text-white block my-2">Sign Up</a>
       {{/if}}
       {{/if}}
-      <p class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}} my-2 text-white">Welcome,
+      <p
+        class="{{#if isHome}}hidden{{/if}}{{#if isLogin}} hidden{{/if}}{{#if isRegister}} hidden{{/if}} my-2 text-white">
+        Welcome,
         {{email}}</p>
     </nav>
 
     <script>
-    document.getElementById('menuButton').addEventListener('click', function () {
-      let mobileMenu = document.getElementById('mobileMenu');
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
+      document.getElementById('menuButton').addEventListener('click', function () {
+        let mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
   </header>
   {{{body}}}
 
+  <footer class="bg-zinc-900 text-gray-600 text-center text- py-4">
+    &copy; 2023 Unleash Your Emotions! | MoodSync
+  </footer>
+
 </body>
+
 
 </html>
