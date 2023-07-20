@@ -11,11 +11,13 @@ function isAuthenticated(req, res, next) {
   next();
 }
 
+//The provided function findMaxProperty takes two arguments: objectData (an object) and objectProperties (an array of strings). The function aims to find the property with the maximum numeric value in the objectData that matches the properties listed in the objectProperties array.
+
 function findMaxProperty(objectData, objectProperties) {
   console.log("Object data being passed is: ", objectData, "Object properties being passed are: ", objectProperties);
  
   let maxNumber = 0;
-  let maxProperty = joy;
+  let maxProperty = "joy";
 
   for (const prop of objectProperties) {
     if (objectData.hasOwnProperty(prop) && typeof objectData[prop] === "number") {
