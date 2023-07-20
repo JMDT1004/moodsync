@@ -23,6 +23,7 @@ async function processMoodsData() {
     if (!response.ok) {
       throw new Error('Failed to fetch moods data');
     }
+    console.log("Response from the server: ", response);
     const moodsData = await response.json();
 
     // Calculate the average percentage for each mood category

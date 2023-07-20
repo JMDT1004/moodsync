@@ -13,12 +13,9 @@ function isAuthenticated(req, res, next) {
 
 function findMaxProperty(objectData, objectProperties) {
   console.log("Object data being passed is: ", objectData, "Object properties being passed are: ", objectProperties);
-  if (!objectData || !Object.keys(objectData).length || !Array.isArray(objectProperties) || objectProperties.length === 0) {
-    return null; // Return null if the input data is not valid or empty
-  }
-
+ 
   let maxNumber = 0;
-  let maxProperty = null;
+  let maxProperty = joy;
 
   for (const prop of objectProperties) {
     if (objectData.hasOwnProperty(prop) && typeof objectData[prop] === "number") {
@@ -33,7 +30,7 @@ function findMaxProperty(objectData, objectProperties) {
     console.log("Returning property:", maxProperty, "Returning rating of:", maxNumber);
   }
 
-  return maxProperty !== null ? { property: maxProperty, rating: maxNumber } : null;
+  return maxProperty !== null ? { property: maxProperty, rating: maxNumber } : {property: "joy", rating: 0.00};
 }
 
 
@@ -68,9 +65,11 @@ router.get('/mood', isAuthenticated, async (req, res) => {
     const user = await User.findByPk(req.session.user_id, {
       include: Mood
     });
-
+    console.log("This is the user in the /mood route: ", user);
+    console.log("This is user.moods: ", user.moods);
     const moods = user.moods.map(mood => {
       const plainMood = mood.get({ plain: true });
+      console.log("This is the plainMood variable: ", plainMood);
       const moodDisplay = returnResult(plainMood);
       console.log("The data being passed to attachColor is: ", moodDisplay);
       const color = attachColor(moodDisplay);
@@ -163,6 +162,7 @@ router.get('/entry', isAuthenticated, async (req, res) => {
 });
 
 function returnResult(data) {
+  console.log("In the return restult: ", data);
   const searchCriteria = ['joy', 'sadness', 'fear', 'anger', 'surprise', 'disgust'];
   const maxResult = findMaxProperty(data, searchCriteria);
   console.log("The max result being passed is: ", maxResult);
