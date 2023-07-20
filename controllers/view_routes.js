@@ -65,9 +65,11 @@ router.get('/mood', isAuthenticated, async (req, res) => {
     const user = await User.findByPk(req.session.user_id, {
       include: Mood
     });
-
+    console.log("This is the user in the /mood route: ", user);
+    console.log("This is user.moods: ", user.moods);
     const moods = user.moods.map(mood => {
       const plainMood = mood.get({ plain: true });
+      console.log("This is the plainMood variable: ", plainMood);
       const moodDisplay = returnResult(plainMood);
       console.log("The data being passed to attachColor is: ", moodDisplay);
       const color = attachColor(moodDisplay);
